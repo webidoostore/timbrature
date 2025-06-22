@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+    <title>Timbratura</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function setLocation() {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                document.getElementById('lat').value = position.coords.latitude;
+                document.getElementById('lon').value = position.coords.longitude;
+            }, function(error) {
+                alert('Geolocalizzazione richiesta per timbrare.');
+            });
+        }
+        window.onload = setLocation;
+    </script>
+</head>
+<body>
+<h2>Timbratura Entrata/Uscita</h2>
+<form method="post">
+  <label>Seleziona il tuo nome:</label><br>
+  <select name="nome">
+    {% for nome in nomi %}
+      <option value="{{ nome }}">{{ nome }}</option>
+    {% endfor %}
+  </select><br><br>
+  <input type="hidden" name="lat" id="lat">
+  <input type="hidden" name="lon" id="lon">
+  <button name="azione" value="entrata">Timbra Entrata</button>
+  <button name="azione" value="uscita">Timbra Uscita</button>
+</form>
+{% if messaggio %}<p>{{ messaggio }}</p>{% endif %}
+</body>
+</html>

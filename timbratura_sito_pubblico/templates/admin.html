@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <title>Admin</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h2>Riepilogo Mensile</h2>
+{% for nome, records in timbrature.items() %}
+<h3>{{ nome }}</h3>
+<table>
+  <tr><th>Data e Ora</th><th>Azione</th></tr>
+  {% for r in records %}
+  <tr><td>{{ r[0] }}</td><td>{{ r[1] }}</td></tr>
+  {% endfor %}
+</table>
+{% endfor %}
+</body>
+</html>
